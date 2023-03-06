@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const therapist = require("../models/therapist.model");
+const Therapist = require("../models/therapist.model");
 const patient = require("./../models/patient.model");
 
 const SECRET_KEY = process.env.SECRET_KEY || "lalala this isnt secure";
@@ -18,12 +18,14 @@ const authMiddleware = async (req, res, next) => {
     const { _id } = jwt.verify(token, SECRET_KEY);
     console.log(_id);
     // attempt to find therapist object and set to req
-    const therapist = await therapist.findOne({ _id });
+    const therapist = await Therapist.findOne({ _id });
     if (!therapist) return res.sendStatus(401);
     req.therapist = therapist;
+    req.category= therapist.category;
     next();
+
   } catch (error) {
-    console.log("some");
+    console.log("error", error);
     res.sendStatus(401);
   }
   // REMOVE-END

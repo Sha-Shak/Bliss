@@ -4,7 +4,7 @@ const PatientSchema = mongoose.Schema({
   name: {
     type: String,
   },
-  typeOfTherapy: {
+ category: {
     type: String,
   },
   gender: {
@@ -26,7 +26,7 @@ const PatientSchema = mongoose.Schema({
     type: Number,
   },
   assignedTo: {
-    type: String,
+    type: [String],
   },
   followUpStatus : {
     type : String
