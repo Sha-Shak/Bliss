@@ -4,10 +4,10 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const patient = require("./router/patient.router");
-const therapist = require("./router/therapist.router")
+const therapist = require("./router/therapist.router");
 
 dotenv.config();
-const PORT = 3000;
+const PORT = 3100;
 const corsConfig = {
   origin: "http://localhost:4200",
   credentials: true,
@@ -15,7 +15,7 @@ const corsConfig = {
 };
 app.use(cors(corsConfig));
 app.use(express.json());
-app.use("/patient",patient)
+app.use("/patient", patient);
 app.use("/therapist", therapist);
 
 (async function bootstrap() {

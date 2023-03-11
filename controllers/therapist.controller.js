@@ -6,11 +6,12 @@ const Patient = require("./../models/patient.model");
 const SECRET_KEY = process.env.SECRET_KEY || "lalala this isnt secure";
 
 const getAllPatients = async (req, res) => {
-  req.therapist = "couple";
+  // req.therapist = "couple";
 
   try {
-    const patients = await Patient.find({ category: req.therapist });
-
+    console.log(req.category)
+    const cat = req.category;
+    const patients = await Patient.find({ category: cat });
     res.status(200).send(patients);
   } catch (error) {
     res.status(500).send(error);
